@@ -3,7 +3,11 @@ var http = require("http"),
 
 http.createServer(function(req, res) {
     var html = fs.readFile("./index.html",function(err, html) {
-        res.write(html);
+        res.writeHead(200,{"Content-Type":"application/json"})
+        res.write(JSON.stringify({
+            nombre: "Santiago", 
+            username: "santiagoblas"})
+        );
         res.end();
     })
 }).listen(8080)
