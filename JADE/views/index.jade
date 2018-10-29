@@ -4,13 +4,24 @@ html
 
     body
         // El '-' premite el ingreso de código JS. '=' permite usar la variable en la vista, no procesa HTML (con '!=' si se procesa el HTML).
-        -var arreglo = [1,2,3,4,5];
-        -for(var i = arreglo.length - 1; i >= 0; i--)
-            p= "'=' <i>" + arreglo[i] + "</i>"
-            p!= "'!=' <i>" + arreglo[i] + "</i>"
-            // '#{}' interpola texto con JS, adentro de las llaves se ejecuta código JS
-            p '\#{}' Hola #{arreglo[i] +1}
-            //interpolación de etiquetas. El '.' te permite tabular sin que lo interprete 'Hola' como otra etiqueta
-            p.
-                Hola haz click en #[a(href='http://google.com',target='_blank') este link] por favor
-            hr
+        -var arreglo = [1,2,3,4];
+        //Los condicionales pueden ignorar '-' y paréntesis
+        if true
+            -for(var i = arreglo.length - 1; i >= 0; i--)
+                p= "'=' <i>" + arreglo[i] + "</i>"
+                p!= "'!=' <i>" + arreglo[i] + "</i>"
+                // '#{}' interpola texto con JS, adentro de las llaves se ejecuta código JS
+                if i < 2
+                    p '\#{}' Hola #{arreglo[i] +1}
+                    //interpolación de etiquetas. El '.' te permite tabular sin que lo interprete 'Hola' como otra etiqueta
+                    p.
+                        Hola haz click en #[a(href='http://google.com',target='_blank') este link] por favor
+                hr
+            each item in arreglo
+                case item
+                    when 1
+                        span // Soy el número uno: #{item}
+                    when 2
+                        span= "// Siempre en segundo lugar: " + item
+                    default
+                        span= " // " + item
