@@ -4,6 +4,7 @@ var express = require("express");
 //nos retorna el objeto sobre el cual trabajaremos
 var app = express();
 
+//Doy acceso a mi carpeta public añadiendo el prefijo /estatico a la url
 app.use("/estatico", express.static("public"))
 
 app.set('view engine', 'jade');
