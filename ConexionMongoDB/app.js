@@ -17,9 +17,6 @@ var userSchemaJSON = {
     password:String
 };
 
-//Inicializo un schema con esa estructura JSON
-var user_schema = new Schema(userSchemaJSON);
-
 //Inicializo un modelo para conectarme, con ese schema
 var User = mongoose.model("User", user_schema);
 
