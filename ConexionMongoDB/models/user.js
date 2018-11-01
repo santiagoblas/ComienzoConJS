@@ -1,5 +1,6 @@
 var mongoose = require("mongoose");
 var Schema = mongoose.Schema; //constructor para crear nuestros schemas
+mongoose.connect("mongodb://localhost/fotos", { useNewUrlParser: true });
 
 /*
 TIPOS DE DATOS QUE PODEMOS USAR CON MONGOOSE
@@ -23,3 +24,8 @@ var user_schema = new Schema({
     email: String,
     date_of_birth: Date
 });
+
+//Inicializo el modelo con el que me voy a conectar
+var User = mongoose.model("User", user_schema);
+
+module.exports.User = User;

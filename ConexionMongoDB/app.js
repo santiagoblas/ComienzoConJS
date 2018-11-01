@@ -1,24 +1,9 @@
 
 var express = require("express");
 var bodyParser = require("body-parser");
+var User = require("./models/user").User;
 //nos retorna el objeto sobre el cual trabajaremos
 var app = express();
-var mongoose = require("mongoose");
-var Schema = mongoose.Schema;
-
-mongoose.connect("mongodb://localhost/fotos", { useNewUrlParser: true });
-
-//Colecciones => tablas
-//Documetos => filas
-
-//Creo la estructura del objeto en JSON
-var userSchemaJSON = {
-    email:String,
-    password:String
-};
-
-//Inicializo un modelo para conectarme, con ese schema
-var User = mongoose.model("User", user_schema);
 
 //Doy acceso a mi carpeta public añadiendo el prefijo /estatico a la url
 app.use("/estatico", express.static("public"));
