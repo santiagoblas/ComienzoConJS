@@ -17,31 +17,57 @@ Array
 
 var posibles_valores = ["M", "F", "X"]
 
-var email_match = [/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/,"Coloca un email válido"]
+var email_match = [/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/,"Coloca un email válido"];
+
+var validation_password = {
+                                validator: function(pass){
+                                        return this.password_confirmation == pass
+                                },
+                                message: "Las password son disntintas"
+                        };
+
+/**VALIDACION MONGOOSE
+ * VALID PARA Number
+ * min, max, 
+ *VALID PARA String
+* maxlength, minlength, match, enum
+* las validaciones de mongoose se hacen sobre el schema.
+* Las validaciones no required no se aplican sobre type undefined.
+*/
 
 //Inicializo un schema con esa estructura JSON
 var user_schema = new Schema({
-    /**VALIDACION MONGOOSE
-     * VALID PARA Number
-     * min, max, 
-     *VALID PARA String
-     * maxlength, minlength, match, enum
-     * las validaciones de mongoose se hacen sobre el schema.
-     * Las validaciones no required no se aplican sobre type undefined.
-     */
+    
     name: String,
-    username: {type: String, required:true,
-            maxlength:[50, "Username muy largo (max: 50)"]},
-    password: {type: String, required:true,
-            minlength:[8, "Pass muy corto"]},
-    age:    {type: Number, min:[5,"La edad no puede ser menor a 5"],
-            max:[100,"La edad máxima es 100"]},
-    email: {type: String, 
+    username: {
+            type: String, 
+            required:true,
+            maxlength:[50, "Usuario muy largo (max: 50)"]
+        },
+    password: {
+            type: String, 
+            required:true,
+            minlength:[8, "Pass muy corto"],
+            validate: validation_password
+        },
+    age:    {
+            type: Number, 
+            min:[5,"La edad no puede ser menor a 5"],
+            max:[100,"La edad máxima es 100"]
+        },
+    email: {
+            type: String, 
             /**required:true o */ 
             required: "El email es obligatorio",
-            match: email_match},
+            match: email_match
+        },
     date_of_birth: Date,
-    sex: {type:String,enum:{values: posibles_valores, message: "Opcion no válida"}}
+    sex: {
+            type:String,
+            enum:{
+                    values: posibles_valores, message: "Opcion no válida"
+                }
+        }
 });
 
 user_schema.virtual("password_confirmation")

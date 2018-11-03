@@ -4,6 +4,9 @@ block contenido
     div(class="col-sm-12")
         form(action="/users", method="POST" class="form-horizontal form-bordered")
             div(class="form-group")
+                label(for="username" class="control-label") Usuario
+                input(type="text" id="username" name="username" placeholder="Usuario" class="form-control")
+            div(class="form-group")
                 label(for="email" class="control-label") Email
                 input(type="text" id="email" name="email" placeholder="E-mail" class="form-control")
             div(class="form-group")
