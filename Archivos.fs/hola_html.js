@@ -8,6 +8,7 @@ http.createServer(function(req, res) {
             nombre: "Santiago", 
             username: "santiagoblas"})
         );
+        res.write(html);
         res.end();
     })
 }).listen(8080)
