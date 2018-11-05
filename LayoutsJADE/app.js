@@ -6,7 +6,6 @@ var app = express();
 
 //Doy acceso a mi carpeta public añadiendo el prefijo /estatico a la url
 app.use("/estatico", express.static("public"));
-
 app.use(bodyParser.json()); //para peticiones application/json
 app.use(bodyParser.urlencoded({extended: true /*define con que algoritmo va a hacer el parser la librería. Permite parsear arrays y bla bla*/}));
 
