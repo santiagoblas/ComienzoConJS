@@ -1,0 +1,17 @@
+extends ../../layout.jade
+
+block contenido
+    div(class="col-sm-6 offset-sm-3 big-top-space")
+        h1 Subir nueva imagen
+        form(action="/app/imagenes", method="POST" class="form-horizontal form-bordered")
+            div(class="form-group")
+                label(for="titulo" class="control-label") Título
+                input(type="text" id="titulo" name="titulo" class="form-control")
+            div(class="form-group")
+                label(for="archivo" class="control-label") Archivo
+                input(type="file" id="archivo" name="archivo"  class="")
+            div(class="form-group form-actions row")
+                div(class="col-sm-12 col-md-6")
+                    input(type="submit" class="btn btn-primary" value="Confirmar")
+                div(class="col-sm-12 col-md-6 text-right")
+                    a(href="/app") volver

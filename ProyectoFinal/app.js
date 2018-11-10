@@ -20,13 +20,11 @@ app.use(session({
 app.set('view engine', 'jade');
 
 app.get("/", function (req, res) {
-    console.log(req.session.user_id);
     res.render("index");
 })
 
 app.get("/signup", function (req, res) {
     User.find(function(err,doc) {
-        console.log(doc);
         res.render("signup");
     });
 })
@@ -47,7 +45,6 @@ app.post("/users", function(req,res) {
         res.send("Guardamos el usuario exitosamente")
     },function(err){
         if(err){
-            console.log(String(err));
             res.send("No pudimos guardar la información");
         }
     });
