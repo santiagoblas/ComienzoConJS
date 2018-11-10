@@ -1,0 +1,16 @@
+extends ./layout.jade
+
+block contenido
+    div(class="col-sm-6 offset-sm-3 big-top-space")
+        form(action="/sessions", method="POST" class="form-horizontal form-bordered")
+            div(class="form-group")
+                label(for="email" class="control-label") Email
+                input(type="text" id="email" name="email" placeholder="E-mail" class="form-control")
+            div(class="form-group")
+                label(for="password" class="control-label") Password
+                input(type="password" id="password" name="password"  class="form-control")
+            div(class="form-group form-actions row")
+                div(class="col-sm-12 col-md-6")
+                    input(type="submit" class="btn btn-primary" value="Entrar")
+                div(class="col-sm-12 col-md-6 text-right")
+                    a(href="/signup") No tengo cuenta
