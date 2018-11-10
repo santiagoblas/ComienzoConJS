@@ -62,7 +62,7 @@ app.post("/sessions", function(req,res) {
         "",
         function(err,user){
             req.session.user_id = user._id;
-            res.send("Jola mundo")
+            res.redirect("/app");
         }
     )
 });

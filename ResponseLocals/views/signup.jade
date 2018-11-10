@@ -1,7 +1,7 @@
 extends ./layout.jade
 
 block contenido
-    div(class="col-sm-12")
+    div(class="col-sm-6 offset-sm-3 big-top-space")
         form(action="/users", method="POST" class="form-horizontal form-bordered")
             div(class="form-group")
                 label(for="username" class="control-label") Usuario
@@ -15,7 +15,8 @@ block contenido
             div(class="form-group")
                 label(for="password_confirmation" class="control-label") Confirmar Password
                 input(type="password" id="password_confirmation" name="password_confirmation"  class="form-control")
-            div(class="form-group text-center form-actions")
-                div(class="btn-group")
+            div(class="form-group form-actions row")
+                div(class="col-sm-12 col-md-6")
                     input(type="submit" class="btn btn-primary" value="Registrarse")
-                    a(href="/" class="btn btn-default") Volver
+                div(class="col-sm-12 col-md-6 text-right")
+                    a(href="/login") Ya tengo una cuenta

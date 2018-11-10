@@ -1,3 +1,7 @@
-body {
-    background-color: red;
+.rigth-space {
+    margin-right: 1em;
+}
+
+.big-top-space {
+    margin-top: 100px;
 }
