@@ -33,7 +33,10 @@ router.route("/imagenes/:id")
 
 router.route("/imagenes")
     .get(function(req, res) {
-
+        Imagen.find({}, function(err,imagenes) {  
+            if(err) {res.redirect("/app");return;}
+            res.render("app/imagenes/index", {imagenes: imagenes});
+        });
     })
     .post(function(req, res) {
         var data = {

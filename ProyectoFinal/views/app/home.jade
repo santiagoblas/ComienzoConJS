@@ -1,5 +1,8 @@
 extends ../layout.jade
 
 block contenido
-    p Hola #{user.email}
-    a(href="app/imagenes/new" class="btn btn-default") Subir imagen
+    div(class="row")
+        div(class="col-sm-12")
+            p Hola #{user.email}
+            hr
+            a(href="app/imagenes/new" class="btn btn-info") Subir imagen
