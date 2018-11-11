@@ -2,7 +2,7 @@
 var express = require("express");
 var bodyParser = require("body-parser");
 var User = require("./models/user").User;
-var session = require("express-session");
+var cookieSession = require("cookie-session");
 var router_app = require("./routes_app");
 var session_middleware = require("./middlewares/session");
 
@@ -11,10 +11,9 @@ var app = express();
 app.use("/estatico", express.static("public"));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
-app.use(session({
-    secret: "123asdfj124lo",
-    resave: false,
-    saveUninitialized: false
+app.use(cookieSession({
+    name: "sesion",
+    keys: ["llave-1", "llave-2"]
 }));
 
 app.set('view engine', 'jade');
