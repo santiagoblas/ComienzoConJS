@@ -14,7 +14,9 @@ router.get("/imagenes/new",function(req,res) {
 });
 
 router.get("/imagenes/:id/edit",function(req,res) {
-
+    Imagen.findById(req.params.id, function(err,imagen) {
+        res.render("app/imagenes/edit", {imagen:imagen});
+    });
 });
 
 //Seteamos una url y concatenamos las funciones que identifican las acciones que se pueden realizar sobre el recurso.
@@ -25,7 +27,16 @@ router.route("/imagenes/:id")
         });
     })
     .put(function(req, res) {
-
+        Imagen.findById(req.params.id, function(err,imagen) {
+            imagen.title = req.body.titulo;
+            imagen.save(function(err) {
+                if(!err) {
+                    res.redirect("/app/imagenes");
+                } else {
+                    res.render("app/imagenes/edit",{imagen:imagen});
+                }
+            });
+        });
     })
     .delete(function(req, res) {
 

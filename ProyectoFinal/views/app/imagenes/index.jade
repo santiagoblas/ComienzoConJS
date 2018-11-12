@@ -5,8 +5,8 @@ block contenido
         for imagen in imagenes
             .row.border
                 .col-lg-10.col-md-8
-                    h2.my-2= imagen.title
+                    h3.my-2= imagen.title
                 .col-lg-2.col-md-4.text-right
                     .btn-group.my-2
-                        a(href="/app/imagenes/#{imagen._id}/edit" class="btn btn-default") Editar
-                        a(href="/app/imagenes/#{imagen._id}/delete" class="btn btn-default") Eliminar
+                        a(href="/app/imagenes/#{imagen._id}/edit" class="btn btn-xs btn-default") Editar
+                        a(href="/app/imagenes/#{imagen._id}/delete" class="btn  btn-xs btn-default") Eliminar
