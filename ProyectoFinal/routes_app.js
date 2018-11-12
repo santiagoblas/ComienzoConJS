@@ -18,7 +18,7 @@ router.route("/imagenes")
         });
     })
     .post(function(req, res) {
-        console.log(res.locals.user._id);
+        console.log(req.body.archivo);
         var data = {
             title: req.body.titulo,
             creator: res.locals.user._id
