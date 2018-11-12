@@ -9,7 +9,7 @@ module.exports = function(req, res, next) {
             if(err) {
                 res.redirect("/login");
             } else {
-                res.locals = {'user': user};
+                res.locals = {user: user};
                 next();
             }
         });

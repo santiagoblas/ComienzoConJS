@@ -10,11 +10,37 @@ router.get("/", function(req,res) {
 
 /**REST */
 
-router.all("/imagenes/:id*", image_finder_middleware);
+router.route("/imagenes")
+    .get(function(req, res) {
+        Imagen.find({creator: res.locals.user._id}, function(err,imagenes) {  
+            if(err) {res.redirect("/app");return;}
+            res.render("app/imagenes/index", {imagenes: imagenes});
+        });
+    })
+    .post(function(req, res) {
+        console.log(res.locals.user._id);
+        var data = {
+            title: req.body.titulo,
+            creator: res.locals.user._id
+        }
+
+        var imagen = new Imagen(data);
+
+        imagen.save(function(err){
+            if(!err) {
+                res.redirect("/app/imagenes/" + imagen._id);
+            } else {
+                res.render(err);
+            }
+            console.log(imagen);
+        });
+    });
 
 router.get("/imagenes/new",function(req,res) {
     res.render("app/imagenes/new");
 });
+
+router.all("/imagenes/:id*", image_finder_middleware);
 
 router.get("/imagenes/:id/edit",function(req,res) {
     res.render("app/imagenes/edit");
@@ -42,29 +68,6 @@ router.route("/imagenes/:id")
             } else {
                 res.redirect("/app/imagenes/"+req.params.id);
                 console.log(err);
-            }
-        });
-    });
-
-router.route("/imagenes")
-    .get(function(req, res) {
-        Imagen.find({}, function(err,imagenes) {  
-            if(err) {res.redirect("/app");return;}
-            res.render("app/imagenes/index", {imagenes: imagenes});
-        });
-    })
-    .post(function(req, res) {
-        var data = {
-            title: req.body.titulo
-        }
-
-        var imagen = new Imagen(data);
-
-        imagen.save(function(err){
-            if(!err) {
-                res.redirect("/app/imagenes/" + imagen._id);
-            } else {
-                res.render(err);
             }
         });
     });
