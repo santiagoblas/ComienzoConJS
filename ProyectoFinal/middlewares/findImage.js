@@ -6,7 +6,6 @@ module.exports = function(req,res,next) {
         .populate("creator")
         .exec(function(err, imagen) {
             if(imagen != null && owner_check(imagen,req,res)) {
-                console.log(imagen.creator);
                 res.locals.imagen = imagen;
                 next();
             } else {

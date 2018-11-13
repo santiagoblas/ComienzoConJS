@@ -10,15 +10,19 @@ var formidable = require("express-formidable");
 
 var app = express();
 
-app.use("/estatico", express.static("public"));
+app.use("/public", express.static("public"));
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({extended: true}));
+app.use(bodyParser.urlencoded({
+    extended: true
+}));
 app.use(methodOverride("_method"));
 app.use(cookieSession({
     name: "sesion",
     keys: ["llave-1", "llave-2"]
 }));
-app.use(formidable.parse({keepExtensions: true}));
+app.use(formidable({
+    keepExtensions: true
+}));
 
 app.set('view engine', 'jade');
 
