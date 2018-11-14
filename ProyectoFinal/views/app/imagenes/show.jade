@@ -1,7 +1,8 @@
 extends ../../layout.jade
 
 block contenido
-    h1 #{imagen.title}
-    img(src="/public/imagenes/#{imagen._id}.#{imagen.extension}")
-    -if(typeof imagen.creator != "undefined")
-        p Por #{imagen.creator.email}
+    div(class="col-md-6 offset-md-3 col-lg-8 offset-lg-2")
+        h2 #{imagen.title}
+        img(src="/public/imagenes/#{imagen._id}.#{imagen.extension}" class="img-thumbnail img-fluid")
+        -if(typeof imagen.creator != "undefined")
+            p(class="text-right blockquote-footer") Por #{imagen.creator.email}

@@ -15,7 +15,6 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
     extended: true
 }));
-app.use(methodOverride("_method"));
 app.use(cookieSession({
     name: "sesion",
     keys: ["llave-1", "llave-2"]
@@ -23,6 +22,7 @@ app.use(cookieSession({
 app.use(formidable({
     keepExtensions: true
 }));
+app.use(methodOverride("_method"));
 
 app.set('view engine', 'jade');
 

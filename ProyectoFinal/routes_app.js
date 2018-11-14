@@ -6,7 +6,12 @@ var fs = require("fs");
 
 
 router.get("/", function(req,res) {
-    res.render("app/home");
+    Imagen.find({})
+        .populate("creator")
+        .exec(function(err,imagenes) {
+            if(err) console.log(err);
+            res.render("app/home", {imagenes:imagenes});
+        });
 });
 
 /**REST */
@@ -47,7 +52,7 @@ router.get("/imagenes/new",function(req,res) {
     res.render("app/imagenes/new");
 });
 
-router.all("/imagenes/:id*", image_finder_middleware);
+//router.all("/imagenes/:id*", image_finder_middleware);
 
 router.get("/imagenes/:id/edit",function(req,res) {
     res.render("app/imagenes/edit");

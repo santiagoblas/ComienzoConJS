@@ -1,8 +1,19 @@
 extends ../layout.jade
 
 block contenido
-    div(class="row")
-        div(class="col-sm-12")
+    .row
+        .col-sm-6
             p Hola #{user.email}
-            hr
+        .col-sm-6.text-right
             a(href="app/imagenes/new" class="btn btn-info") Subir imagen
+    .row
+        .card-columns
+            for imagen in imagenes
+                .card
+                    .card-body
+                        h5.card-title #{imagen.title}
+                    -if(typeof imagen.extension != "undefined")
+                        img(src="/public/imagenes/#{imagen._id}.#{imagen.extension}" class="card-img-bottom")
+                    -if(typeof imagen.creator != "undefined")
+                        footer.blockquote-footer.text-right.pr-1
+                            small Por #{imagen.creator.email}
